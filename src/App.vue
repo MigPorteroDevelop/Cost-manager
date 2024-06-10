@@ -1,5 +1,6 @@
 <script setup>
 import Filter from './components/Filter.vue';
+import Budget from './components/Budget.vue';
 
 </script>
 
@@ -7,14 +8,22 @@ import Filter from './components/Filter.vue';
   <div>
     <header>
       <h1>Expense planner</h1>
+
+      <div class="container-header container shadow">
+        <Budget 
+        
+        />
+      </div>
     </header>
-    <!--<Filter />-->
+
+
+
   </div>
 </template>
 
 <style>
 :root {
-  --blue: #3b82f6;
+  --purple: #b58883;
   --white: #FFF;
   --light-gray: #F5F5F5;
   --gray: #94a3b8;
@@ -40,18 +49,37 @@ body {
 
 h1 {
   font-size: 4rem;
+  transform: translateY(3rem);
 }
 
 h2 {
   font-size: 3rem;
 }
-header{
-  background-color: var(--blue);
+
+header {
+  background-color: var(--purple);
 }
-header h1{
+
+header h1 {
   padding: 3rem 0;
   margin: 0;
   color: var(--white);
   text-align: center;
+}
+
+.container{
+  width: 90%;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.container-header{
+  margin-top: -5rem;
+  transform: translateY(12rem);
+  padding: 5rem;
+}
+.shadow{
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+  background-color: var(--white);
 }
 </style>
