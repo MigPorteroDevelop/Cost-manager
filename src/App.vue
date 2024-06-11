@@ -16,8 +16,6 @@ import Budget from './components/Budget.vue';
       </div>
     </header>
 
-
-
   </div>
 </template>
 
