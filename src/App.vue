@@ -1,6 +1,14 @@
 <script setup>
+import { ref } from 'vue';
 import Filter from './components/Filter.vue';
 import Budget from './components/Budget.vue';
+import budgetControl from './components/budgetControl.vue';
+
+const budget = ref(0);
+
+const defineBudget = (quantity) => {
+  budget.value = quantity;
+}
 
 </script>
 
@@ -11,8 +19,11 @@ import Budget from './components/Budget.vue';
 
       <div class="container-header container shadow">
         <Budget 
-        
+          v-if="budget === 0" 
+          @define-budget="defineBudget" 
         />
+
+        <budgetControl v-else />
       </div>
     </header>
 
@@ -22,6 +33,7 @@ import Budget from './components/Budget.vue';
 <style>
 :root {
   --purple: #b58883;
+  --dark-green: #064237;
   --white: #FFF;
   --light-gray: #F5F5F5;
   --gray: #94a3b8;
@@ -65,19 +77,20 @@ header h1 {
   text-align: center;
 }
 
-.container{
+.container {
   width: 90%;
   max-width: 80rem;
   margin: 0 auto;
 }
 
-.container-header{
+.container-header {
   margin-top: -5rem;
   transform: translateY(12rem);
   padding: 5rem;
 }
-.shadow{
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+
+.shadow {
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   background-color: var(--white);
 }
 </style>

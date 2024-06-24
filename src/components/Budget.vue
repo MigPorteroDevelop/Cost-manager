@@ -5,14 +5,20 @@ import Alert from './Alert.vue';
 const budget = ref(0);
 const error = ref('');
 
+const emit = defineEmits(['define-budget'])
+
 const defineBudget = () => {
-  if(budget.value <= 0 ){
+  if(budget.value <= 0 || budget.value === '' ){
     error.value = "Budget not valid"
-    
+
     setTimeout(() => {
       error.value = '';
     }, 3000)
+
+    return
+    
   }
+  emit('define-budget', budget.value)
 } 
 </script>
 
