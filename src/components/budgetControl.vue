@@ -1,5 +1,18 @@
 <script setup>
-import graphic from '../../public/img/graphic.jpg';
+import graphic from '/img/graphic.jpg';
+import { formatQuantity } from '../helpers'
+
+const props = defineProps({
+  budget: {
+    type: Number,
+    required: true
+  },
+  available: {
+    type: Number,
+    required: true
+  }
+})
+
 </script>
 
 <template>
@@ -7,9 +20,10 @@ import graphic from '../../public/img/graphic.jpg';
     <div class="graphic-container">
       <img :src="graphic" />
     </div>
+
     <div class="budget-container">
-      <p><span>Budget:</span></p>
-      <p><span>Available:</span></p>
+      <p><span>Budget:</span> {{ formatQuantity(budget) }}</p>
+      <p><span>Available:</span> {{ formatQuantity(available) }}</p>
       <p><span>Spent:</span></p>
       <button class="reset-app">Reset</button>
     </div>
@@ -40,7 +54,7 @@ import graphic from '../../public/img/graphic.jpg';
 }
 
 
-.reset-app{
+.reset-app {
   background-color: var(--purple);
   border: none;
   padding: 1rem;
@@ -50,7 +64,7 @@ import graphic from '../../public/img/graphic.jpg';
   border-radius: 1rem;
 }
 
-.reset-app:hover{
+.reset-app:hover {
   cursor: pointer;
   text-transform: uppercase;
   transition: transform 0.8s ease;
@@ -69,8 +83,8 @@ import graphic from '../../public/img/graphic.jpg';
 
 @media(min-width: 768px) {
   .budget-container p {
-  text-align: left;
-}
+    text-align: left;
+  }
 }
 
 .budget-container span {

@@ -5,9 +5,11 @@ import Budget from './components/Budget.vue';
 import budgetControl from './components/budgetControl.vue';
 
 const budget = ref(0);
+const available = ref(0);
 
 const defineBudget = (quantity) => {
   budget.value = quantity;
+  available.value = quantity;
 }
 
 </script>
@@ -23,7 +25,11 @@ const defineBudget = (quantity) => {
           @define-budget="defineBudget" 
         />
 
-        <budgetControl v-else />
+        <budgetControl 
+          v-else 
+          :budget="budget"
+          :available="available"
+          />
       </div>
     </header>
 
