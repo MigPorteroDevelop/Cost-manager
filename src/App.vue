@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import Filter from './components/Filter.vue';
 import Budget from './components/Budget.vue';
 import budgetControl from './components/budgetControl.vue';
+import expenseIcon from '/icons/new_expense.svg'
 
 const budget = ref(0);
 const available = ref(0);
@@ -11,7 +12,6 @@ const defineBudget = (quantity) => {
   budget.value = quantity;
   available.value = quantity;
 }
-
 </script>
 
 <template>
@@ -32,6 +32,15 @@ const defineBudget = (quantity) => {
           />
       </div>
     </header>
+
+    <main>
+      <div class="create-expense">
+        <img 
+        :src="expenseIcon" 
+        alt="newExpense icon"
+        />
+      </div>
+    </main>
 
   </div>
 </template>
@@ -99,4 +108,16 @@ header h1 {
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   background-color: var(--white);
 }
+
+.create-expense{
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
+}
+
+.create-expense img{
+  width: 5rem;
+  cursor: pointer;
+}
+
 </style>
