@@ -1,16 +1,31 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import Filter from './components/Filter.vue';
 import Budget from './components/Budget.vue';
 import budgetControl from './components/budgetControl.vue';
 import expenseIcon from '/icons/new_expense.svg'
+import Modal from './components/Modal.vue'
 
+const modal = reactive({
+  show: false,
+  animate: false  
+})
 const budget = ref(0);
 const available = ref(0);
 
 const defineBudget = (quantity) => {
   budget.value = quantity;
   available.value = quantity;
+}
+
+const showModal = () => {
+  modal.show = true
+  modal.animate = true 
+}
+
+const closeModal = () => {
+  modal.show = false
+  modal.animate = false 
 }
 </script>
 
@@ -33,15 +48,20 @@ const defineBudget = (quantity) => {
       </div>
     </header>
 
-    <main>
+    <main v-if="budget > 0">
       <div class="create-expense">
         <img 
-        :src="expenseIcon" 
-        alt="newExpense icon"
+          :src="expenseIcon" 
+          alt="newExpense icon"
+          @click="showModal"
         />
       </div>
+      
+      <Modal 
+        v-if="modal.show === true"
+        @close-modal="closeModal"
+      />
     </main>
-
   </div>
 </template>
 
