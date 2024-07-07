@@ -20,12 +20,16 @@ const defineBudget = (quantity) => {
 
 const showModal = () => {
   modal.show = true
+  setTimeout(() => {
   modal.animate = true 
+  },400);
 }
 
 const closeModal = () => {
-  modal.show = false
   modal.animate = false 
+  setTimeout(() => {
+  modal.show = false 
+  },400)
 }
 </script>
 
@@ -60,6 +64,7 @@ const closeModal = () => {
       <Modal 
         v-if="modal.show === true"
         @close-modal="closeModal"
+        :modal="modal"
       />
     </main>
   </div>

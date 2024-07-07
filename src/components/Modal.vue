@@ -2,6 +2,13 @@
 import closeIcon from '/icons/close.svg'
 
 const emit = defineEmits(['close-modal']);
+const props = defineProps({
+  modal: {
+    type: Object,
+    required: true
+  }
+})
+
 </script>
 <template>
   <div class="modal">
@@ -11,7 +18,9 @@ const emit = defineEmits(['close-modal']);
         @click="$emit('close-modal')"
       />
     </div>
-    <div class="container">
+    <div class="container form-container"
+      :class="[modal.animate ? 'animate' : 'close']"
+    >
       <form
         class="new-expense"
       >
@@ -79,6 +88,21 @@ const emit = defineEmits(['close-modal']);
 .closeModal img{
   width: 4rem;
   cursor: pointer;
+}
+
+.form-container{
+  transition-property: all;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in;
+  opacity: 0;
+}
+
+.form-container.animate{
+  opacity: 1;
+}
+
+.form-container.close{
+  opacity: 0;
 }
 
 .new-expense{

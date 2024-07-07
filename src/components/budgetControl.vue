@@ -66,8 +66,7 @@ const props = defineProps({
 
 .reset-app:hover {
   cursor: pointer;
-  text-transform: uppercase;
-  transition: transform 0.8s ease;
+  transition: transform 0.3s ease;
   transform: scale(1.1);
 }
 
