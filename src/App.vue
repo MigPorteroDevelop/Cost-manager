@@ -13,6 +13,14 @@ const modal = reactive({
 const budget = ref(0);
 const available = ref(0);
 
+const expense = reactive({
+  name: '',
+  quantity: '',
+  category: '',
+  id: null,
+  date: Date.now()
+})
+
 const defineBudget = (quantity) => {
   budget.value = quantity;
   available.value = quantity;
@@ -65,6 +73,9 @@ const closeModal = () => {
         v-if="modal.show === true"
         @close-modal="closeModal"
         :modal="modal"
+        v-model:name="expense.name"
+        v-model:quantity="expense.quantity"
+        v-model:category="expense.category"
       />
     </main>
   </div>

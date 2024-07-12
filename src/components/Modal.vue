@@ -1,10 +1,22 @@
 <script setup>
 import closeIcon from '/icons/close.svg'
 
-const emit = defineEmits(['close-modal']);
+const emit = defineEmits(['close-modal', 'update:name', 'update:quantity', 'update:category']);
 const props = defineProps({
   modal: {
     type: Object,
+    required: true
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  quantity:{
+    type: [String, Number],
+    required: true
+  },
+  category: {
+    type: String,
     required: true
   }
 })
@@ -32,19 +44,22 @@ const props = defineProps({
             type="text"
             id="name"
             placeholder="Add expense name"
+            :value="name"
+            @input="$emit('update:name', $event.target.value)"
             />
         </div>
-
         <div class="field">
           <label for="quantity">Quantity:</label>
           <input 
             type="number"
             id="quantity"
             placeholder="Add quantity, ej. 300"
+            :value="quantity"
+            @input="$emit('update:quantity', $event.target.value)"
             />
         </div>
         <div class="field">
-          <label for="quantity">Category:</label>
+          <label for="category">Category:</label>
           <select
             id="category"
           >
@@ -62,6 +77,8 @@ const props = defineProps({
         <input 
           type="submit"
           value="Add expense"
+          :value="category"
+          @input="$emit('update:category', $event.target.value)"
           >
       </form>
     </div>
