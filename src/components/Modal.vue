@@ -1,5 +1,9 @@
 <script setup>
-import closeIcon from '/icons/close.svg'
+import { ref } from 'vue';
+import Alert from './Alert.vue';
+import closeIcon from '/icons/close.svg';
+
+const error = ref('');
 
 const emit = defineEmits(['close-modal', 'update:name', 'update:quantity', 'update:category']);
 const props = defineProps({
@@ -21,6 +25,25 @@ const props = defineProps({
   }
 })
 
+
+const addExpense = () => {
+  const { quantity, category, name } = props
+        if([quantity, category, name].includes('')) {
+            error.value = 'All fields are required'
+            setTimeout(() => {
+                error.value = ''
+            }, 3000);
+            return
+        }
+
+   if(quantity <= 0) {
+            error.value = 'Invalid quantity'
+            setTimeout(() => {
+                error.value = ''
+            }, 3000);
+            return
+        }
+      }
 </script>
 <template>
   <div class="modal">
@@ -35,8 +58,10 @@ const props = defineProps({
     >
       <form
         class="new-expense"
+        @submit.prevent="addExpense"
       >
         <legend>Add expense</legend>
+        <Alert v-if="error">{{ error }}</Alert>
 
         <div class="field">
           <label for="name">Expense name:</label>
@@ -62,8 +87,10 @@ const props = defineProps({
           <label for="category">Category:</label>
           <select
             id="category"
+            :value="category"
+            @input="$emit('update:category', $event.target.value)"
           >
-            <option value="">Select the expense</option>
+            <option value="">--Select the expense--</option>
             <option value="savings">Savings</option>
             <option value="food">Food</option>
             <option value="hause">Hause</option>
@@ -76,9 +103,6 @@ const props = defineProps({
 
         <input 
           type="submit"
-          value="Add expense"
-          :value="category"
-          @input="$emit('update:category', $event.target.value)"
           >
       </form>
     </div>
