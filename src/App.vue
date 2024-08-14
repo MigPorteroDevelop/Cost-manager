@@ -12,6 +12,7 @@ const modal = reactive({
 })
 const budget = ref(0);
 const available = ref(0);
+const expenses = ref([]);
 
 const expense = reactive({
   name: '',
@@ -41,11 +42,10 @@ const closeModal = () => {
 }
 
 const saveExpense = () => {
-  /*expense.id = Date.now()
-  expenses.value.push(expense)
-  available.value -= expense.quantity
-  closeModal()*/
-  alert("Saludos desde App.vue")
+  expenses.value.push({
+    ...expense, 
+    id: 123
+  })
 }
 </script>
 
