@@ -3,8 +3,9 @@ import { ref, reactive } from 'vue';
 import Filter from './components/Filter.vue';
 import Budget from './components/Budget.vue';
 import budgetControl from './components/budgetControl.vue';
-import expenseIcon from '/icons/new_expense.svg'
-import Modal from './components/Modal.vue'
+import expenseIcon from '/icons/new_expense.svg';
+import Modal from './components/Modal.vue';
+import { idGenerate } from './helpers/index';
 
 const modal = reactive({
   show: false,
@@ -44,7 +45,7 @@ const closeModal = () => {
 const saveExpense = () => {
   expenses.value.push({
     ...expense, 
-    id: 123
+    id: idGenerate()
   })
 }
 </script>
