@@ -5,7 +5,7 @@ import closeIcon from '/icons/close.svg';
 
 const error = ref('');
 
-const emit = defineEmits(['close-modal', 'update:name', 'update:quantity', 'update:category']);
+const emit = defineEmits(['close-modal', 'save-expense', 'update:name', 'update:quantity', 'update:category']);
 const props = defineProps({
   modal: {
     type: Object,
@@ -25,7 +25,6 @@ const props = defineProps({
   }
 })
 
-
 const addExpense = () => {
   const { quantity, category, name } = props
         if([quantity, category, name].includes('')) {
@@ -43,6 +42,8 @@ const addExpense = () => {
             }, 3000);
             return
         }
+
+        emit('save-expense')
       }
 </script>
 <template>

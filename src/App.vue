@@ -39,6 +39,14 @@ const closeModal = () => {
   modal.show = false 
   },400)
 }
+
+const saveExpense = () => {
+  /*expense.id = Date.now()
+  expenses.value.push(expense)
+  available.value -= expense.quantity
+  closeModal()*/
+  alert("Saludos desde App.vue")
+}
 </script>
 
 <template>
@@ -72,6 +80,7 @@ const closeModal = () => {
       <Modal 
         v-if="modal.show === true"
         @close-modal="closeModal"
+        @save-expense="saveExpense"
         :modal="modal"
         v-model:name="expense.name"
         v-model:quantity="expense.quantity"
