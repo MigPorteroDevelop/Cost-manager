@@ -47,6 +47,14 @@ const saveExpense = () => {
     ...expense, 
     id: idGenerate()
   })
+
+  Object.assign(expense, {
+    name: '',
+    quantity: '',
+    category: '',
+    id: null,
+    date: Date.now()
+  })
 }
 </script>
 
