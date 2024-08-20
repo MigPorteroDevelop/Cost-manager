@@ -60,7 +60,10 @@ const saveExpense = () => {
 </script>
 
 <template>
-  <div>
+  <!--add class : if condition = true-->
+  <div
+    :class="{fix : modal.show}"
+  >
     <header>
       <h1>Expense planner</h1>
 
@@ -145,6 +148,11 @@ h1 {
 
 h2 {
   font-size: 3rem;
+}
+
+.fix{
+  overflow: hidden;
+  height: 100vh;
 }
 
 header {

@@ -11,7 +11,7 @@ import SubscriptionsIcon from '../../public/icons/subscriptions_icon.svg'
 const IconDictionary = {
   saving: SavingIcon,
   food: FoodIcon,
-  home: HomeIcon,
+  hause: HomeIcon,
   expenses: ExpensesIcon,
   leisure: LeisureIcon,
   health: HealthIcon,
