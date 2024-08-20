@@ -46,6 +46,7 @@ const addExpense = () => {
         emit('save-expense')
       }
 </script>
+
 <template>
   <div class="modal">
     <div class="closeModal">
@@ -95,7 +96,7 @@ const addExpense = () => {
             <option value="savings">Savings</option>
             <option value="food">Food</option>
             <option value="hause">Hause</option>
-            <option value="miscellaneous">Miscellaneous</option>
+            <option value="expenses">Miscellaneous expenses</option>
             <option value="leisure">Leisure</option>
             <option value="health">Health</option>
             <option value="subscriptions">Subscriptions</option>
