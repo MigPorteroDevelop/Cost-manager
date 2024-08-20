@@ -37,11 +37,64 @@ const props = defineProps({
       <div class="details">
         <p class="category">{{ expense.category }}</p>
         <p class="name">{{ expense.name }}</p>
-        <p class="date">{{ formatDate(expense.date) }}</p>
+        <p class="date"><span>{{ formatDate(expense.date) }}</span></p>
       </div>
-      <p class="quantity">{{ formatQuantity(expense.quantity) }}</p>
     </div>
+    <p class="quantity">{{ formatQuantity(expense.quantity) }}</p>
   </div>
 </template>
 
-<style scoped></style>
+
+<style scoped>
+.expense {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 3rem;
+}
+
+.content{
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.icon{
+  width: 5rem;
+}
+
+.details p{
+  margin: 0 0 1rem 0;
+}
+
+.category{
+  color: var(--dark-gray);
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.name{
+  color: var(--dark-gray);
+  font-size: 2.4rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.date{
+  color: var(--dark-gray);
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.date span{
+  font-weight: 400;
+}
+
+.quantity{
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0;
+}
+</style>
