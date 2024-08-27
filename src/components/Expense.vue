@@ -1,12 +1,12 @@
 <script setup>
 import { formatQuantity, formatDate } from '../helpers/index'
-import SavingIcon from '../../public/icons/savings_icon.svg'
-import HomeIcon from '../../public/icons/home_icon.svg'
-import FoodIcon from '../../public/icons/food_icon.svg'
-import ExpensesIcon from '../../public/icons/miscellaneous_icon.svg'
-import LeisureIcon from '../../public/icons/leisure_icon.svg'
-import HealthIcon from '../../public/icons/health_icon.svg'
-import SubscriptionsIcon from '../../public/icons/subscriptions_icon.svg'
+import SavingIcon from '/icons/savings_icon.svg'
+import HomeIcon from '/icons/home_icon.svg'
+import FoodIcon from '/icons/food_icon.svg'
+import ExpensesIcon from '/icons/miscellaneous_icon.svg'
+import LeisureIcon from '/icons/leisure_icon.svg'
+import HealthIcon from '/icons/health_icon.svg'
+import SubscriptionsIcon from '/icons/subscriptions_icon.svg'
 
 const IconDictionary = {
   saving: SavingIcon,
