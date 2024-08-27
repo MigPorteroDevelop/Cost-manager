@@ -82,7 +82,7 @@ const addExpense = () => {
             id="quantity"
             placeholder="Add quantity, ej. 300"
             :value="quantity"
-            @input="$emit('update:quantity', $event.target.value)"
+            @input="$emit('update:quantity', parseFloat($event.target.value))"
             />
         </div>
         <div class="field">
@@ -93,7 +93,7 @@ const addExpense = () => {
             @input="$emit('update:category', $event.target.value)"
           >
             <option value="">--Select the expense--</option>
-            <option value="savings">Savings</option>
+            <option value="saving">Savings</option>
             <option value="food">Food</option>
             <option value="hause">Hause</option>
             <option value="expenses">Miscellaneous expenses</option>
