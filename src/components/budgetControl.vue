@@ -1,7 +1,8 @@
 <script setup>
-import CircleProgress from 'vue3-circle-progress'
-import "vue3-circle-progress/dist/circle-progress.css"
-import { formatQuantity } from '../helpers'
+import { computed } from 'vue';
+import CircleProgress from 'vue3-circle-progress';
+import "vue3-circle-progress/dist/circle-progress.css";
+import { formatQuantity } from '../helpers';
 
 defineEmits(['reset-app'])
 
@@ -20,16 +21,26 @@ const props = defineProps({
   }
 })
 
+const percentage = computed(() => {
+  return parseInt(((props.budget - props.available) / props.budget) * 100)
+})
+
+/*const percentageFloat = computed(() => {
+  return parseFloat(((props.budget - props.available) / props.budget) * 100)
+})*/
 </script>
 
 <template>
   <div class="columns">
     <div class="graphic-container">
+
+      <p class="percentage"> {{ percentage }}%</p>
+
       <CircleProgress
-        :percent="20"
+        :percent="percentage"
         :size="250"
-        :border-width="30"
-        :border-bg-width="30"
+        :border-width="25"
+        :border-bg-width="25"
         fill-color="#b58883"
         empty-color="#F5F5F5"
       />
@@ -49,6 +60,23 @@ const props = defineProps({
 </template>
 
 <style scoped>
+.graphic-container{
+  position: relative;
+}
+
+.percentage{
+  position: absolute;
+  margin: auto;
+  top: calc(50% - 2rem);
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 3.5rem;
+  font-weight: 900;
+  z-index: 100;
+  color: var(--dark-gray);
+}
+
 .columns {
   display: flex;
   flex-direction: column;
