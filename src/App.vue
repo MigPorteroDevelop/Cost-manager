@@ -29,7 +29,7 @@ watch(expenses, () => {
   const totalSpent = expenses.value.reduce((total, expense) => total + expense.quantity, 0);
   spent.value = totalSpent
 
-    available.value = budget.value - totalSpent
+  available.value = budget.value - totalSpent
   
 },{
   deep: true
@@ -119,6 +119,7 @@ const saveExpense = () => {
         @close-modal="closeModal"
         @save-expense="saveExpense"
         :modal="modal"
+        :available="available"
         v-model:name="expense.name"
         v-model:quantity="expense.quantity"
         v-model:category="expense.category"

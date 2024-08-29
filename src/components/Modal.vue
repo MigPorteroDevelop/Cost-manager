@@ -22,11 +22,15 @@ const props = defineProps({
   category: {
     type: String,
     required: true
+  },
+  available: {
+    type: Number,
+    required: true
   }
 })
 
 const addExpense = () => {
-  const { quantity, category, name } = props
+  const { quantity, category, name, available } = props
         if([quantity, category, name].includes('')) {
             error.value = 'All fields are required'
             setTimeout(() => {
@@ -42,7 +46,16 @@ const addExpense = () => {
             }, 3000);
             return
         }
-
+        
+        //Delete if you want to accept exceed the budget
+        if(quantity > available) {
+            error.value = 'You exceeded the budget'
+            setTimeout(() => {
+                error.value = ''
+            }, 3000);
+            return
+        }     
+        
         emit('save-expense')
       }
 </script>
