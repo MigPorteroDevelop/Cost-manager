@@ -58,7 +58,7 @@ const closeModal = () => {
   modal.animate = false 
   setTimeout(() => {
   modal.show = false 
-  },400)
+  },500)
 }
 
 const saveExpense = () => {

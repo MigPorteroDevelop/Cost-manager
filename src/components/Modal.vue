@@ -26,11 +26,17 @@ const props = defineProps({
   available: {
     type: Number,
     required: true
+  },
+  id: {
+    type: [String, null],
+    required: true
   }
 })
 
+const oldQuantity = props.quantity
+
 const addExpense = () => {
-  const { quantity, category, name, available } = props
+  const { quantity, category, name, available, id } = props
         if([quantity, category, name].includes('')) {
             error.value = 'All fields are required'
             setTimeout(() => {
@@ -46,16 +52,27 @@ const addExpense = () => {
             }, 3000);
             return
         }
-        
-        //Delete if you want to accept exceed the budget
-        if(quantity > available) {
+
+        //If we have id, means that we're editing
+        if(id){
+          if(quantity > oldQuantity + available){
             error.value = 'You exceeded the budget'
-            setTimeout(() => {
-                error.value = ''
-            }, 3000);
-            return
-        }     
-        
+              setTimeout(() => {
+                  error.value = ''
+              }, 3000);
+              return
+          }
+          emit('close-modal')
+        }else{
+          //Delete if you want to accept exceed the budget
+          if(quantity > available) {
+              error.value = 'You exceeded the budget'
+              setTimeout(() => {
+                  error.value = ''
+              }, 3000);
+              return
+          }     
+        }       
         emit('save-expense')
       }
 </script>
@@ -118,7 +135,7 @@ const addExpense = () => {
 
         <input 
           type="submit"
-          >
+>
       </form>
     </div>
   </div>
