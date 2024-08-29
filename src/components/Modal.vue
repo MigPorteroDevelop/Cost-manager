@@ -5,7 +5,7 @@ import closeIcon from '/icons/close.svg';
 
 const error = ref('');
 
-const emit = defineEmits(['close-modal', 'save-expense', 'update:name', 'update:quantity', 'update:category']);
+const emit = defineEmits(['close-modal', 'save-expense', 'update:name', 'update:quantity', 'update:category', 'delete-expense']);
 const props = defineProps({
   modal: {
     type: Object,
@@ -144,7 +144,15 @@ const isEditing = computed(() => {
         >
       </form>
 
-      
+      <button
+        type="button"
+        class="btn-delete"
+        v-if="isEditing"
+        @click="$emit('delete-expense')"
+      >
+        Delete expense
+      </button>
+
     </div>
   </div>
 </template>
@@ -161,7 +169,6 @@ const isEditing = computed(() => {
 
 .closeModal{
   position: absolute;
-  
   right: 3rem;
   top: 3rem;
 }
@@ -227,6 +234,19 @@ const isEditing = computed(() => {
 }
 
 .field select{
+  cursor: pointer;
+}
+
+.btn-delete{
+  border: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 100%;
+  background-color: #d50000;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--white);
+  margin-top: 2rem;
   cursor: pointer;
 }
 </style>

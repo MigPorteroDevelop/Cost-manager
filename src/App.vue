@@ -94,6 +94,13 @@ const selectExpense = id => {
   Object.assign(expense, editExpense);
   showModal();
 }
+
+const deleteExpense = () => {
+  if(confirm('Delete expense?')) {  
+  expenses.value = expenses.value.filter(expenseState => expenseState.id !== expense.id)
+  closeModal();
+  }
+}
 </script>
 
 <template>
@@ -144,6 +151,7 @@ const selectExpense = id => {
         v-if="modal.show === true"
         @close-modal="closeModal"
         @save-expense="saveExpense"
+        @delete-expense="deleteExpense"
         :modal="modal"
         :id="expense.id"
         :available="available"
