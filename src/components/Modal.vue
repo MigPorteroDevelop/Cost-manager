@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import Alert from './Alert.vue';
 import closeIcon from '/icons/close.svg';
 
@@ -75,6 +75,11 @@ const addExpense = () => {
         }       
         emit('save-expense')
       }
+
+const isEditing = computed(() => {
+  return props.id
+})
+
 </script>
 
 <template>
@@ -92,7 +97,7 @@ const addExpense = () => {
         class="new-expense"
         @submit.prevent="addExpense"
       >
-        <legend>Add expense</legend>
+        <legend>{{ isEditing ? 'Save changes' : 'Add expense'}}</legend>
         <Alert v-if="error">{{ error }}</Alert>
 
         <div class="field">
@@ -135,8 +140,11 @@ const addExpense = () => {
 
         <input 
           type="submit"
->
+          :value="[ isEditing ? 'Save changes' : 'Add expense']"
+        >
       </form>
+
+      
     </div>
   </div>
 </template>
