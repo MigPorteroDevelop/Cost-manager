@@ -2,6 +2,8 @@
 import graphic from '/img/graphic.jpg';
 import { formatQuantity } from '../helpers'
 
+defineEmits(['reset-app'])
+
 const props = defineProps({
   budget: {
     type: Number,
@@ -29,7 +31,11 @@ const props = defineProps({
       <p><span>Budget:</span> {{ formatQuantity(budget) }}</p>
       <p><span>Spent:</span> {{ formatQuantity(spent) }}</p>
       <p><b><span>Available:</span> {{ formatQuantity(available) }}</b></p>
-      <button class="reset-app">Reset</button>
+      <button 
+        class="reset-app"
+        type="button"
+        @click="$emit('reset-app')"
+      >Reset</button>
     </div>
   </div>
 </template>
