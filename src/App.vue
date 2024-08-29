@@ -28,6 +28,9 @@ const expenses = ref([]);
 watch(expenses, () => {
   const totalSpent = expenses.value.reduce((total, expense) => total + expense.quantity, 0);
   spent.value = totalSpent
+
+    available.value = budget.value - totalSpent
+  
 },{
   deep: true
 })
