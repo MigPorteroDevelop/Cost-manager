@@ -48,6 +48,19 @@ defineEmits(['update:filter'])
   font-size: 3rem;
   font-weight: 900;
   color: var(--dark-gray);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .filters label {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .filters label {
+    font-size: 2rem;
+  }
 }
 
 .selector{

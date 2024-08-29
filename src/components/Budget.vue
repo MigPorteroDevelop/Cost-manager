@@ -41,6 +41,7 @@ const defineBudget = () => {
         type="number"
         min="0"
         v-model="budget"
+        step="0.01"
       />
 
       <input 
