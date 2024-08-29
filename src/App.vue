@@ -15,6 +15,7 @@ const modal = reactive({
 const budget = ref(0);
 const available = ref(0);
 const spent = ref(0);
+const filter = ref('');
 const expense = reactive({
   name: '',
   quantity: '',
@@ -127,16 +128,19 @@ const deleteExpense = () => {
     </header>
 
     <main v-if="budget > 0">
-
+      
       <div class="expenses-list container">
-        <h2>{{expenses.length > 0 ? 'Expenses' : 'No expenses yet'}}</h2>
-
-        <Expense
-          v-for="expense in expenses"
-          :key="expense.id"
-          :expense="expense"
-          @select-expense="selectExpense"
+        <Filter 
+          v-model:filter="filter"
         />
+          <h2>{{expenses.length > 0 ? 'Expenses' : 'No expenses yet'}}</h2>
+
+          <Expense
+            v-for="expense in expenses"
+            :key="expense.id"
+            :expense="expense"
+            @select-expense="selectExpense"
+          />
       </div>
 
       <div class="create-expense">
