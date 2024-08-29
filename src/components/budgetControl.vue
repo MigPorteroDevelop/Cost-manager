@@ -27,8 +27,8 @@ const props = defineProps({
 
     <div class="budget-container">
       <p><span>Budget:</span> {{ formatQuantity(budget) }}</p>
-      <p><span>Available:</span> {{ formatQuantity(available) }}</p>
       <p><span>Spent:</span> {{ formatQuantity(spent) }}</p>
+      <p><b><span>Available:</span> {{ formatQuantity(available) }}</b></p>
       <button class="reset-app">Reset</button>
     </div>
   </div>

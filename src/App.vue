@@ -35,6 +35,12 @@ watch(expenses, () => {
   deep: true
 })
 
+watch(modal, () => {
+  if(!modal.show){
+    //Reset the object
+    resetStateExpense();
+  }
+})
 
 const defineBudget = (quantity) => {
   budget.value = quantity;
@@ -61,6 +67,11 @@ const saveExpense = () => {
     id: idGenerate()
   })
 
+  resetStateExpense();
+  
+}
+
+const resetStateExpense = () => {
   Object.assign(expense, {
     name: '',
     quantity: '',
@@ -68,6 +79,12 @@ const saveExpense = () => {
     id: null,
     date: Date.now()
   })
+}
+
+const selectExpense = id => {
+  const editExpense = expenses.value.filter(expense => expense.id === id)[0]
+  Object.assign(expense, editExpense);
+  showModal();
 }
 </script>
 
@@ -103,6 +120,7 @@ const saveExpense = () => {
           v-for="expense in expenses"
           :key="expense.id"
           :expense="expense"
+          @select-expense="selectExpense"
         />
       </div>
 
