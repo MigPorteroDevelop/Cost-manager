@@ -62,10 +62,18 @@ const closeModal = () => {
 }
 
 const saveExpense = () => {
-  expenses.value.push({
-    ...expense, 
-    id: idGenerate()
+  if(expense.id ) {
+    //editing
+    const { id } = expense
+    const i = expenses.value.findIndex((expense => expense.id === id))
+    expenses.value[i] = {...expense}
+  }else{
+    //new register
+    expenses.value.push({
+      ...expense, 
+      id: idGenerate()
   })
+}
 
   resetStateExpense();
   
@@ -137,6 +145,7 @@ const selectExpense = id => {
         @close-modal="closeModal"
         @save-expense="saveExpense"
         :modal="modal"
+        :id="expense.id"
         :available="available"
         v-model:name="expense.name"
         v-model:quantity="expense.quantity"
