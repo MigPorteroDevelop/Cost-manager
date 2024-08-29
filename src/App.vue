@@ -167,6 +167,7 @@ const resetApp = () => {
       <div class="expenses-list container">
         <Filter 
           v-model:filter="filter"
+          v-if="expenses.length > 1"
         />
           <h2>{{filteredExpenses.length > 0 ? 'Expenses' : 'No expenses yet'}}</h2>
 

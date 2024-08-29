@@ -14,7 +14,7 @@ defineEmits(['update:filter'])
             @input="$emit('update:filter', $event.target.value)"
             class="selector"
           >
-            <option value="">--Select category--</option>
+            <option value="">Select category</option>
             <option value="saving">Savings</option>
             <option value="food">Food</option>
             <option value="hause">Hause</option>
@@ -57,5 +57,12 @@ defineEmits(['update:filter'])
   border: none;
   border-radius: 1rem;
   background-color: var(--light-gray);
+}
+
+.selector option:first-of-type {
+  color: #02866d;
+  font-style: italic;
+  text-transform: uppercase;
+  font-weight: 900;
 }
 </style>
