@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, watch, computed } from 'vue';
+import { ref, reactive, watch, computed, onMounted } from 'vue';
 import Filter from './components/Filter.vue';
 import Budget from './components/Budget.vue';
 import budgetControl from './components/budgetControl.vue';
@@ -29,11 +29,12 @@ const expenses = ref([]);
 watch(expenses, () => {
   const totalSpent = expenses.value.reduce((total, expense) => total + expense.quantity, 0);
   spent.value = totalSpent
-
   available.value = budget.value - totalSpent
   
+  localStorage.setItem('expenses', JSON.stringify(expenses.value))
 },{
   deep: true
+  
 })
 
 watch(modal, () => {
@@ -41,6 +42,25 @@ watch(modal, () => {
     //Reset the object
     resetStateExpense();
   }
+}, {
+    deep: true
+})
+
+watch(budget, () => {
+  localStorage.setItem('budget', budget.value)
+})
+
+onMounted(() => {
+  const storageBudget = localStorage.getItem('budget')
+  if(storageBudget){
+    budget.value = Number(storageBudget)
+  }
+
+  const storageExpenses = localStorage.getItem('expenses')
+  if(storageExpenses){
+    expenses.value = JSON.parse(storageExpenses)
+  }
+
 })
 
 const defineBudget = (quantity) => {
