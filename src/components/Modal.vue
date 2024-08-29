@@ -118,6 +118,7 @@ const isEditing = computed(() => {
             placeholder="Add quantity, ej. 300"
             :value="quantity"
             @input="$emit('update:quantity', parseFloat($event.target.value))"
+            step="0.01"
             />
         </div>
         <div class="field">
@@ -126,8 +127,9 @@ const isEditing = computed(() => {
             id="category"
             :value="category"
             @input="$emit('update:category', $event.target.value)"
+            class="selector"
           >
-            <option value="">--Select the expense--</option>
+            <option value="">Select the category</option>
             <option value="saving">Savings</option>
             <option value="food">Food</option>
             <option value="hause">Hause</option>
@@ -248,5 +250,12 @@ const isEditing = computed(() => {
   color: var(--white);
   margin-top: 2rem;
   cursor: pointer;
+}
+
+.selector option:first-of-type {
+  color: #02866d;
+  font-style: italic;
+  text-transform: uppercase;
+  font-weight: 900;
 }
 </style>
