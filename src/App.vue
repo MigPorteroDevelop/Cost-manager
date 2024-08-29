@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, watch } from 'vue';
+import { ref, reactive, watch, computed } from 'vue';
 import Filter from './components/Filter.vue';
 import Budget from './components/Budget.vue';
 import budgetControl from './components/budgetControl.vue';
@@ -102,6 +102,13 @@ const deleteExpense = () => {
   closeModal();
   }
 }
+
+const filteredExpenses = computed(() => {
+  if(filter.value){
+    return expenses.value.filter(expense => expense.category === filter.value)
+  }
+  return expenses.value
+})
 </script>
 
 <template>
@@ -133,10 +140,10 @@ const deleteExpense = () => {
         <Filter 
           v-model:filter="filter"
         />
-          <h2>{{expenses.length > 0 ? 'Expenses' : 'No expenses yet'}}</h2>
+          <h2>{{filteredExpenses.length > 0 ? 'Expenses' : 'No expenses yet'}}</h2>
 
           <Expense
-            v-for="expense in expenses"
+            v-for="expense in filteredExpenses"
             :key="expense.id"
             :expense="expense"
             @select-expense="selectExpense"
